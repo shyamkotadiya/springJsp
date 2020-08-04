@@ -8,7 +8,7 @@
 <h1>Registration</h1>
 <form action='add' method="post">
 First Name:<input type="text" name="firstName"><br><br>
-Last Name:<input type="text" name="lastName"><br><br>
+Last Name :<input type="text" name="lastName"><br><br>
 Gender:<input type="radio" name="gender" value="male">Male
 <input type="radio" name="gender" value="female">FeMale<br><br>
 Hobbies: <input type="checkbox" name="hobbies" value="VollyBall">VollyBall
