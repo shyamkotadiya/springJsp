@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.Spring.entity.UserDetailTable;
+import com.Spring.entity.UserTable;
 import com.Spring.service.UserDetailService;
+import com.Spring.service.UserService;
 
 //@RequestMapping(path = "/SpringJsp")
 @Controller
@@ -15,32 +17,53 @@ public class AddController {
 	
 	@Autowired
 	private UserDetailService userDetailService;
+	
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(path= "/add",method = RequestMethod.POST)
 	public String add(UserDetailTable userdetail) {
-		
-		
-		System.out.println(userdetail.toString());
+		UserTable userTab = userService.getUserByUserName(userdetail.getUsername());
+		if(userTab ==null) {
+		UserTable user = new UserTable();
+		user.setUsername(userdetail.getUsername());
+		user.setPassword(userdetail.getPassword());
+		userService.save(user);
 		userDetailService.save(userdetail);
-		return "display";
+		return "index";
+		}else {
+			return "userAlreadySaved";
+		}
+	}
+	
+	@RequestMapping(path= "/checkLogin",method = RequestMethod.POST)
+	public String checkLogin(UserTable user) {
+		
+		
+		UserTable userTab = userService.getUserByUserName(user.getUsername());
+		if(userTab !=null) {
+			
+		if(user.getPassword().equals(userTab.getPassword())) {
+			return "display";
+		}else {
+			return "notAuthorize";
+		}
+		}else {
+			return "notAuthorize";
+		}
 	}
 	
 	@GetMapping(path = "/register")
 	public String register() {
 		System.out.println("IN Register......");
-		return "register";
+		return "index";
 	}
 	
-	@RequestMapping(path= "/get",method=RequestMethod.GET)    
+	@RequestMapping(path= "/login",method=RequestMethod.GET)    
     public String greet(){
-		UserDetailTable userdetail = new UserDetailTable();
-		userdetail.setFirstName("shyam");
-		userdetail.setLastName("kotadiya");
-		userdetail.setGender("f");
-		userdetail.setHobbies("Cricket,vollyball");
-		userDetailService.save(userdetail);
-        System.out.println("hello world!!! ");
+	
+        System.out.println("in login!!! ");
         
-        return "display.jsp";
+        return "login";
     }
 }

@@ -14,9 +14,9 @@ Gender:<input type="radio" name="gender" value="male">Male
 Hobbies: <input type="checkbox" name="hobbies" value="VollyBall">VollyBall
 <input type="checkbox" name="hobbies" value="Cricket">Cricket
 <input type="checkbox" name="hobbies" value="FootBall">FootBall<br><br> 
-Address: <textarea name="username"></textarea><br><br>
+Address: <textarea name="address"></textarea><br><br>
 User Name: <input type="text" name="username"><br><br>
-Password: <input type="text" name="password"><br><br>
+Password: <input type="password" name="password"><br><br>
 
 <input type="submit">
 </form>

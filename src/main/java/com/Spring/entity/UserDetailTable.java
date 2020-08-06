@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "userdetailtable")
@@ -41,6 +42,40 @@ public class UserDetailTable  implements Serializable{
 	private String gender;
 
 	private String hobbies;
+	
+	private String address;
+	
+	@Transient
+	private String username;
+	
+	@Transient
+	private String password;
+	
+	
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public Integer getUserDetailId() {
 		return userDetailId;
